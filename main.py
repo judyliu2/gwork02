@@ -7,5 +7,4 @@ color = [ 0, 255, 0 ]
 display(screen)
 save_extension(screen, 'img.png')
 
-plot(screen, color, XRES/2, YRES/2);
-
+drawline(XRES-1, YRES-1, 0,0, screen,color)
