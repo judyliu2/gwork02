@@ -2,53 +2,77 @@
 from display import *
 
 def draw_line( x0, y0, x1, y1, screen, color ):
-    #check octant
-    m = (y1 - y0)/(x1 - x0)
-    if (m > 0 and m < 1): #quadrants 1 and 5
-        A = x0+1
-        B = y0 + 0.5
-        d = 2A + B
-        while (x0 <= x1):
-            plot(screen,color, x0, y0)
-            if( d > 0):
-                y++
-                d+=2B
-            x++
-            d+= 2A
+    #switch coordinates if x0>x1
+    
+    if (x0>x1):
+        z = x0
+        x0 = x1
+        x1 = z
+        z = y0
+        y0= y1
+        y1 = z
+    
+    
+    x  = x0
+    y = y0
+    
+    A = y1-y0  #change in y
+    B = -1.* (x1-x0)   # - change in x
+    if(B == 0):
+        while (y<=y1):
+            plot(screen, color,x,y)
+            y+=1
+        return
             
-    if (m > 1): #quadrants 2 and 6
-        A = x0 + .5
-        B = y0 + 1
-        d = A + 2B
-        while (y0<=y1):
-            plot(screen,color, x0, y0)
-            if (d<0):
-                x++
-                d+=2A
-            y++
-            d+=2B
-            #quadrants 3 and 7
-    if (m < 0 and m > -1):
-        A = x0 + 0.5
-        B = y - 1
-        d = 2A + B
-        while (y0 >= y1):
-            plot(screen,color, x0, y0)
-            if (d<0):
-                x++
-                d-=2A
-            y++
-            d-=B
-            #quadrants 4 and 8
-    if( m < -1):
-        A = x0 + 1
-        B = y - .5
-        d = A + 2B
-        while(x0 >= x1):
-            plot(screen,color, x0, y0)
+    m = -1. * (A/B)
+
+  
+            
+    #octants 1, 5
+    if (m >= 0 and m <= 1):
+        d = 2*A+ B
+        while (x<= x1):
+            plot(screen, color, x, y)
             if (d>0):
-                y++
-                d-=2A
-            x++
-            d-=2B
-pass
+                y+=1
+                d += 2*B
+            x+=1
+            d += 2*A
+        
+
+    #octants 2, 6
+    elif (m > 1):
+        d = A + 2*B
+        while (y<= y1):
+            plot(screen, color, x,y)
+            if (d<0):
+                x+=1
+                d += 2*A
+            y+=1
+            d+=2*B
+
+    #quadrants 3, 7
+    elif (m <= -1):
+        d = A + 2*B
+        while (y>=y1):
+            plot(screen,color, x,y)
+            if (d>0):
+                x+=1
+                d += 2*A
+            y-=1
+            d-= 2*B
+            
+    #quadrants 4, 8
+    elif (m<0 and m>-1):
+        d = 2*A + B
+        while (x<=x1):
+            plot(screen,color, x,y)
+            if (d<0):
+                y -=1
+                d -= 2*B
+            x+=1
+            d+=2*A
+
+    else:
+        print "what the"
+        print m

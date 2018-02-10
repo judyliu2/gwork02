@@ -1,10 +1,31 @@
 from display import *
 from draw import *
 
-screen = new_screen()
-color = [ 0, 255, 0 ]
+s = new_screen()
+c = [ 80, 228, 75 ]
 
-display(screen)
-save_extension(screen, 'img.png')
 
-drawline(XRES-1, YRES-1, 0,0, screen,color)
+draw_line(200,350, XRES/2+10, YRES/2, s, c)
+draw_line(XRES/2+10, YRES/2, XRES/2+100, YRES/2+100,s,c)
+draw_line(XRES/2+100, YRES/2+100,XRES/2+200, YRES/2,s,c)
+draw_line(XRES/2+200, YRES/2, 350, 300,s,c)
+draw_line(350, 300,XRES/2, YRES/2 -50,s,c)
+draw_line(XRES/2, YRES/2 -50, 175, 300, s,c)
+draw_line(175, 300, 120, YRES-210, s,c)
+draw_line(120, YRES-210,150, 320, s,c)
+draw_line(150, 320,100,340, s,c)
+draw_line(100,340,100,360, s,c)
+draw_line(100,360,150,380, s,c)
+draw_line(150,380,200,350, s,c)
+
+
+c= [218, 69, 104]
+draw_line(100,320,140,322,s,c)
+draw_line(100,320,110,310,s,c)
+draw_line(110,310,100,300,s,c)
+draw_line(100,300,145,318,s,c)
+
+display(s)
+save_extension(s, 'img.png')
+
+
